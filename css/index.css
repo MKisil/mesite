@@ -191,12 +191,13 @@ a {
 
 @media(max-width: 1000px) {
 	.container {
-		margin-top: 10px;
+		margin-top: 0px;
+		padding-top: 20px;
 		max-width: 425px;
 	}
 
 	.version {
-		margin-bottom: 13px;
+		margin-bottom: 8px;
 	}
 
 	.info-card {
