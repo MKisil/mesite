@@ -1,8 +1,9 @@
 :root {
   --primary-color: #ffd95a;
   --secondary-color: #776b5d;
-  --background-color: #0f0e12;
-  --text-color: #d8d9da;
+  --background-color: #fbfbfb;
+  --text-color: #0f0e12;
+  --content-background-color: rgba(223, 223, 223, 0.27);
 }
 
 body.dark {
@@ -10,6 +11,16 @@ body.dark {
   --secondary-color: #776b5d;
   --background-color: #0f0e12;
   --text-color: #d8d9da;
+  --text-secondary-color: #d7d3bf;
+  --content-background-color: rgba(57, 54, 70, 0.27);
+  --skills-table-background-color: rgba(57, 54, 70, 0.6);
+  --skills-table-header-background-color: rgba(57, 54, 70, 0.8);
+  --skills-table-border-color: #353535;
+  --label-background-color: #000;
+  --label-text-color: #fff;
+  --firefly-background-color: #ffd95a;
+  --firefly-box-shadow-color: #fff7d4;
+  --underline-color: rgba(97, 94, 116, 0.8);
 }
 
 body {
@@ -20,11 +31,8 @@ body {
   font-weight: 400;
   font-style: normal;
   line-height: 1.2;
-}
-
-body.dark {
-  color: #d8d9da;
-  background-color: #0f0e12;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 main,
@@ -55,16 +63,15 @@ section {
   width: 9px;
   height: 9px;
   position: absolute;
-  background-color: #ffd95a;
-  box-shadow: 0px 0px 10px 2px #fff7d4;
+  background-color: var(--firefly-background-color);
+  box-shadow: 0px 0px 10px 2px var(--firefly-box-shadow-color);
   border-radius: 20px;
   z-index: 2;
 }
 
 .content {
-  background: rgba(57, 54, 70, 0.27);
+  background: var(--content-background-color);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.4px);
   -webkit-backdrop-filter: blur(3.4px);
 
@@ -79,7 +86,7 @@ section {
   font-size: 19px;
   text-decoration: underline;
   text-decoration-style: wavy;
-  text-decoration-color: #776b5d;
+  text-decoration-color: var(--secondary-color);
 }
 
 .underline {
@@ -94,7 +101,7 @@ section {
   bottom: 0;
   width: 100%;
   height: 2px;
-  background-color: rgba(97, 94, 116, 0.8);
+  background-color: var(--underline-color);
   z-index: -1;
 }
 
@@ -112,7 +119,7 @@ section {
 .skills__table {
   font-size: 16px;
   width: 100%;
-  background: rgba(57, 54, 70, 0.6);
+  background: var(--skills-table-background-color);
   border-radius: 5px;
   overflow: scroll;
 }
@@ -124,14 +131,14 @@ section {
 }
 
 .skills__table thead {
-  background: rgba(57, 54, 70, 0.8);
+  background: var(--skills-table-header-background-color);
 }
 
 .skills__table thead th {
   font-weight: 500;
   padding: 5px 10px;
   text-align: center;
-  color: #d7d3bf;
+  color: var(--text-secondary-color);
 }
 
 .skills__table thead th:first-child {
@@ -151,7 +158,7 @@ section {
 }
 
 .skills__table tbody tr {
-  border-bottom: 1px solid #353535;
+  border-bottom: 1px solid var(--skills-table-border-color);
 }
 
 .skills__table tbody tr td {
@@ -159,12 +166,12 @@ section {
 }
 
 .skills__table tbody tr td:hover {
-  background-color: #776b5d;
+  background-color: var(--secondary-color);
 }
 
 .skills__table tbody td {
   padding: 5px 10px;
-  border-right: 1px solid #353535;
+  border-right: 1px solid var(--skills-table-border-color);
 }
 
 .skills__table tbody tr:last-child {
@@ -197,8 +204,8 @@ section {
   top: 85%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #000;
-  color: #fff;
+  background-color: var(--label-background-color);
+  color: var(--label-text-color);
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 12px;
@@ -219,7 +226,7 @@ section {
   justify-content: space-between;
   padding: 8px 12px;
   border-radius: 3px;
-  border: 2px solid rgba(57, 54, 70, 0.8);
+  border: 2px solid var(--skills-table-header-background-color);
   font-size: 16px;
 }
 
@@ -238,7 +245,7 @@ section {
 }
 
 .experience__button-group svg path {
-  stroke: #ffd966;
+  stroke: var(--primary-color);
 }
 
 .experience__button-group svg {
@@ -258,12 +265,12 @@ section {
 }
 
 .socials__item svg path {
-  fill: #776b5d;
+  fill: var(--secondary-color);
   transition: fill 0.4s ease;
 }
 
 .socials__item:hover svg path {
-  fill: #ffd966;
+  fill: var(--primary-color);
 }
 
 .content__footer {
@@ -285,7 +292,7 @@ section {
 }
 
 .theme-switcher svg path {
-  stroke: #776b5d;
+  stroke: var(--secondary-color);
   transition: stroke 0.4s ease;
 }
 
@@ -295,8 +302,8 @@ section {
   top: 90%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #000;
-  color: #fff;
+  background-color: var(--label-background-color);
+  color: var(--label-text-color);
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 12px;
