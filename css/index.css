@@ -236,7 +236,7 @@ body:not(.dark) .dark-theme-svg {
   content: "See Project";
   position: absolute;
   top: 85%;
-  left: 50%;
+  left: -10%;
   transform: translateX(-50%);
   background-color: var(--label-background-color);
   color: var(--label-text-color);
