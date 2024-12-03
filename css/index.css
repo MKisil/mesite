@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #FFAF61;
+  --primary-color: #ffaf61;
   --secondary-color: #776b5d;
   --background-color: #fbfbfb;
   --text-color: #0f0e12;
@@ -10,11 +10,10 @@
   --skills-table-border-color: #adadad;
   --label-background-color: #000;
   --label-text-color: #fff;
-  --firefly-background-color: #FFAF61;
-  --firefly-box-shadow-color: #FFDB5C;
+  --firefly-background-color: #ffaf61;
+  --firefly-box-shadow-color: #ffdb5c;
   --cell-hover-background-color: #b3a99d;
   --underline-color: rgba(97, 94, 116, 0.8);
-
 }
 
 body.dark {
@@ -33,6 +32,12 @@ body.dark {
   --firefly-box-shadow-color: #fff7d4;
   --cell-hover-background-color: #776b5d;
   --underline-color: rgba(97, 94, 116, 0.8);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -81,7 +86,8 @@ section {
   z-index: 2;
 }
 
-.light-theme-svg, .dark-theme-svg {
+.light-theme-svg,
+.dark-theme-svg {
   display: none;
 }
 
@@ -138,6 +144,10 @@ body:not(.dark) .dark-theme-svg {
 
 .content__main {
   margin-bottom: 30px;
+}
+
+.skills {
+  overflow-x: auto;
 }
 
 .skills__table {
@@ -343,17 +353,14 @@ body:not(.dark) .dark-theme-svg {
   opacity: 1;
 }
 
-@media(max-width: 520px) {
+@media (max-width: 560px) {
   .about__text {
     font-size: 17px;
   }
 
-  .skills {
-    overflow-x: auto;
-  }
-  
   .experience__buttons {
     flex-direction: column;
     gap: 10px;
+    border: none;
   }
 }
