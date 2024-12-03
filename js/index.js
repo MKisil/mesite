@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   counters.forEach((counter) => {
     const target = +counter.getAttribute("data-target");
-    const speed = 50;
+    const speed = 70;
 
     const updateCounter = () => {
       const current = +counter.innerText;
