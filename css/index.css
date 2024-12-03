@@ -100,7 +100,7 @@ body:not(.dark) .dark-theme-svg {
 
 .content {
   background: var(--content-background-color);
-  border-radius: 16px;
+  border-radius: 10px;
   backdrop-filter: blur(3.4px);
   -webkit-backdrop-filter: blur(3.4px);
 
@@ -354,7 +354,7 @@ body:not(.dark) .dark-theme-svg {
 
 @media (max-width: 730px) {
   .container {
-    padding: 30px 15px
+    padding: 30px 15px;
   }
 }
 
