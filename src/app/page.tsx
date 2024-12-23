@@ -1,101 +1,156 @@
-import Image from "next/image";
+"use client";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion-work";
+import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { Bar, BarChart } from "recharts";
+
+import { GeistSans } from "geist/font/sans";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const chartData = [
+    { month: "January", commits: 5 },
+    { month: "February", commits: 305 },
+    { month: "March", commits: 237 },
+    { month: "April", commits: 73 },
+    { month: "May", commits: 209 },
+    { month: "June", commits: 214 },
+    { month: "July", commits: 186 },
+    { month: "August", commits: 305 },
+    { month: "September", commits: 237 },
+    { month: "October", commits: 73 },
+    { month: "November", commits: 209 },
+    { month: "December", commits: 214 },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const chartConfig = {
+    commits: {
+      label: "Commits",
+      color: "#2563eb",
+    },
+  } satisfies ChartConfig;
+
+  return (
+    <div className={`container ${GeistSans.className}`}>
+      <div className="mb-20">
+        <Avatar className="w-20 h-20 mb-4">
+          <AvatarImage src="" />
+          <AvatarFallback>M</AvatarFallback>
+        </Avatar>
+        <p className="leading-7">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est aliquid
+          facere assumenda quis, voluptates labore magnam tempora, corrupti
+          suscipit, aperiam aspernatur reiciendis. Tempora officia delectus
+          architecto esse, atque repellat error exercitationem nam, minima,
+          eligendi vitae eveniet quaerat perspiciatis rerum quis voluptate ut
+          voluptates! Dolorem consequuntur, facilis deleniti eum veniam velit.
+        </p>
+      </div>
+      <div className="mb-20">
+        <h2 className="scroll-m-20 text-base text-center font-semibold tracking-tight mb-1">
+          Skills
+        </h2>
+        <Separator className="mb-5" />
+        <div className="flex flex-wrap gap-2 justify-center">
+          <Badge variant="outline">Python</Badge>
+          <Badge variant="outline">JavaScript</Badge>
+          <Badge variant="outline">TypeScript</Badge>
+          <Badge variant="outline">Django</Badge>
+          <Badge variant="outline">Django rest framework</Badge>
+          <Badge variant="outline">FastAPI</Badge>
+          <Badge variant="outline">Flask</Badge>
+          <Badge variant="outline">Docker</Badge>
+          <Badge variant="outline">Git/GitHub</Badge>
+          <Badge variant="outline">AWS(S3)</Badge>
+          <Badge variant="outline">Redis</Badge>
+          <Badge variant="outline">PostgreSQL</Badge>
+          <Badge variant="outline">HTML</Badge>
+          <Badge variant="outline">CSS</Badge>
+          <Badge variant="outline">React</Badge>
+          <Badge variant="outline">Tailwind CSS</Badge>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="mb-20">
+        <h2 className="scroll-m-20 text-base text-center font-semibold tracking-tight mb-1">
+          Coding Stats
+        </h2>
+        <Separator className="mb-5" />
+        <div className="">
+          <ChartContainer config={chartConfig} className="max-h-[130px] w-full">
+            <BarChart data={chartData}>
+              <Bar dataKey="commits" fill="var(--color-desktop)" radius={4} />
+            </BarChart>
+          </ChartContainer>
+        </div>
+      </div>
+      <div>
+        <h2 className="scroll-m-20 text-base text-center font-semibold tracking-tight mb-1">
+          Work Experience
+        </h2>
+        <Separator className="mb-5" />
+        <div className="flex gap-4">
+          <Avatar className="w-16 h-16">
+            <AvatarImage src="" />
+            <AvatarFallback>SF</AvatarFallback>
+          </Avatar>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="mb-7">
+                <div className="flex flex-col font-normal leading-4">
+                  <div className="mb-5">
+                    <h3 className="text-base leading-7">
+                      Python/JavaScript Developer
+                    </h3>
+                    <p>Freelance(self-employed)</p>
+                    <p>July 2023 - present</p>
+                  </div>
+                  <AccordionContent className="text-muted-foreground">
+                    <ul className="ml-6 list-disc [&>li:not(:first-child)]:mt-2">
+                      <li>
+                        Developed and maintained web applications with backend
+                        on Django/FastAPI and frontend on React or vanilla
+                        HTML/CSS/JS.
+                      </li>
+                      <li>
+                        Wrote scripts for task automation, developed telegram
+                        bots.
+                      </li>
+                      <li>Deployed web applications/telegram bots.</li>
+                    </ul>
+                  </AccordionContent>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="font-medium">
+                      Python
+                    </Badge>
+                    <Badge variant="outline" className="font-medium">
+                      JavaScript
+                    </Badge>
+                    <Badge variant="outline" className="font-medium">
+                      Django
+                    </Badge>
+                    <Badge variant="outline" className="font-medium">
+                      FastAPI
+                    </Badge>
+                    <Badge variant="outline" className="font-medium">
+                      React
+                    </Badge>
+                    <Badge variant="outline" className="font-medium">
+                      OpenaiAPI
+                    </Badge>
+                  </div>
+                </div>
+              </AccordionTrigger>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </div>
     </div>
   );
 }
