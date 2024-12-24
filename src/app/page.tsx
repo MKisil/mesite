@@ -1,5 +1,10 @@
 "use client";
 
+import Image from "next/image";
+
+import { Bar, BarChart, XAxis } from "recharts";
+import { GeistSans } from "geist/font/sans";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -9,14 +14,32 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion-work";
-import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
-import { Bar, BarChart } from "recharts";
+import {
+  type ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-import { GeistSans } from "geist/font/sans";
+import infoSvg from "../../public/info.svg";
 
 export default function Home() {
   const chartData = [
-    { month: "January", commits: 5 },
+    { month: "January", commits: 15 },
     { month: "February", commits: 305 },
     { month: "March", commits: 237 },
     { month: "April", commits: 73 },
@@ -33,7 +56,7 @@ export default function Home() {
   const chartConfig = {
     commits: {
       label: "Commits",
-      color: "#2563eb",
+      color: "#f2f1ec",
     },
   } satisfies ChartConfig;
 
@@ -83,11 +106,133 @@ export default function Home() {
         </h2>
         <Separator className="mb-5" />
         <div className="">
-          <ChartContainer config={chartConfig} className="max-h-[130px] w-full">
-            <BarChart data={chartData}>
-              <Bar dataKey="commits" fill="var(--color-desktop)" radius={4} />
-            </BarChart>
-          </ChartContainer>
+          <div className="flex justify-end mb-2">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Image src={infoSvg} alt="Info icon" width={15} height={15} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className={`${GeistSans.className}`}>
+                    This information is taken from my{" "}
+                    <a
+                      href="https://github.com/MKisil"
+                      className="underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub
+                    </a>{" "}
+                    profile.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+          <div className="mb-6">
+            <div className="flex justify-around mb-5">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs text-muted-foreground">
+                  Total repositories
+                </span>
+                <span className="text-lg font-bold leading-none sm:text-xl">
+                  19
+                </span>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs text-muted-foreground">
+                  Contibutions last year
+                </span>
+                <span className="text-lg font-bold leading-none sm:text-xl">
+                  453
+                </span>
+              </div>
+            </div>
+            <ChartContainer
+              config={chartConfig}
+              className="min-h-[130px] max-h-[130px] w-full"
+            >
+              <BarChart data={chartData}>
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  tickFormatter={(value) => value.slice(0, 3)}
+                />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Bar
+                  dataKey="commits"
+                  fill="#e9e9e9"
+                  radius={4}
+                  stroke="#d7d7d7"
+                  strokeWidth={1}
+                />
+              </BarChart>
+            </ChartContainer>
+            <div>
+              <div className="flex justify-center gap-1 mt-1.5">
+                <span className="text-xs">Past year activity</span>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-rows-2 gap-2.5">
+            <div className="flex gap-2.5">
+              <Card className="flex-1">
+                <CardHeader>
+                  <CardTitle>Most used tools</CardTitle>
+                  <CardDescription>
+                    I frequently use various technologies in my projects.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm">
+                    Python (37%)
+                    <br />
+                    TypeScript (25%)
+                    <br />
+                    JavaScript (20%)
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="flex-1">
+                <CardHeader>
+                  <CardTitle>Most used tools</CardTitle>
+                  <CardDescription>
+                    I frequently use various technologies in my projects.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm">
+                    Python (37%)
+                    <br />
+                    TypeScript (25%)
+                    <br />
+                    JavaScript (20%)
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+            <div className="flex flex-col">
+              <Card className="flex-1">
+                <CardHeader>
+                  <CardTitle>Most used tools</CardTitle>
+                  <CardDescription>
+                    I frequently use various technologies in my projects.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm">
+                    Python (37%)
+                    <br />
+                    TypeScript (25%)
+                    <br />
+                    JavaScript (20%)
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </div>
       <div>
