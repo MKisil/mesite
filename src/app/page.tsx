@@ -1,16 +1,28 @@
 "use client";
 
-import { FileUser } from "lucide-react";
-import { MapPin } from "lucide-react";
-import { Info } from "lucide-react";
-import { MonitorSmartphone } from "lucide-react";
-import { SquareTerminal } from "lucide-react";
+import {
+  FileUser,
+  MapPin,
+  Info,
+  MonitorSmartphone,
+  SquareTerminal,
+  CalendarIcon,
+  HomeIcon,
+  MailIcon,
+  PencilIcon,
+} from "lucide-react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { Bar, BarChart, XAxis } from "recharts";
 import { GeistSans } from "geist/font/sans";
 
+import { cn } from "@/lib/utils";
+import { Dock, DockIcon } from "@/components/ui/dock";
+
+// import { ModeToggle } from "@/components/mode-toggle";
+import { buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -45,9 +57,40 @@ import {
 import GitHubSvg from "@/components/svg/githubSvg";
 import LinkedInSvg from "@/components/svg/linkedinSvg";
 import TelegramSvg from "@/components/svg/telegramSvg";
+import SpotifySvg from "@/components/svg/spotifySvg";
 import portfolioItem1 from "../../public/home/portfolio1.png";
 
 export default function Home() {
+  const navMenuData = {
+    navbar: [
+      { href: "#", icon: HomeIcon, label: "Home" },
+      { href: "#", icon: PencilIcon, label: "Blog" },
+    ],
+    contact: {
+      social: {
+        GitHub: {
+          name: "GitHub",
+          url: "#",
+          icon: GitHubSvg,
+        },
+        LinkedIn: {
+          name: "LinkedIn",
+          url: "#",
+          icon: LinkedInSvg,
+        },
+        X: {
+          name: "X",
+          url: "#",
+          icon: TelegramSvg,
+        },
+        email: {
+          name: "Send Email",
+          url: "#",
+          icon: MailIcon,
+        },
+      },
+    },
+  };
   const chartData = [
     { month: "January", commits: 15 },
     { month: "February", commits: 305 },
@@ -130,14 +173,35 @@ export default function Home() {
             </TooltipProvider>
           </div>
         </div>
-        <p className="text-muted-foreground">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est aliquid
-          facere assumenda quis, voluptates labore magnam tempora, corrupti
-          suscipit, aperiam aspernatur reiciendis. Tempora officia delectus
-          architecto esse, atque repellat error exercitationem nam, minima,
-          eligendi vitae eveniet quaerat perspiciatis rerum quis voluptate ut
-          voluptates! Dolorem consequuntur, facilis deleniti eum veniam velit.
-        </p>
+        <div className="mb-5">
+          <p className="text-muted-foreground">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est
+            aliquid facere assumenda quis, voluptates labore magnam tempora,
+            corrupti suscipit, aperiam aspernatur reiciendis. Tempora officia
+            delectus architecto esse, atque repellat error exercitationem nam,
+            minima, eligendi vitae eveniet quaerat perspiciatis rerum quis
+            voluptate ut voluptates! Dolorem consequuntur, facilis deleniti eum
+            veniam velit.
+          </p>
+        </div>
+        <div className="flex items-center gap-2 rounded-md px-5 py-3 bg-[#f4f4f5]">
+          <div className="flex items-center">
+            <div className="relative">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#F1C27B]" />
+              <div className="absolute inset-0 animate-ping">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FFD89C] opacity-75" />
+              </div>
+              <div className="absolute -inset-4 rounded-full blur-xl bg-[#FFD89C] opacity-20" />
+            </div>
+          </div>
+          <div className="flex items-center text-sm text-[#555555]">
+            <span>
+              listening to music on{" "}
+              <span className="text-[#282A3A]">spotify</span>
+            </span>
+            <SpotifySvg className="inline ml-1" width={25} height={25} />
+          </div>
+        </div>
       </div>
       <div className="mb-20">
         <h2 className="scroll-m-20 text-lg text-center tracking-tight mb-1 font-medium">
@@ -590,6 +654,74 @@ export default function Home() {
             </Card>
           </div>
         </div>
+      </div>
+      <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50">
+        <TooltipProvider>
+          <Dock
+            direction="bottom"
+            iconSize={30}
+            iconMagnification={50}
+            iconDistance={80}
+            className="bg-white shadow h-12"
+          >
+            {navMenuData.navbar.map((item) => (
+              <DockIcon key={item.label}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={item.href}
+                      aria-label={item.label}
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "icon" }),
+                        "size-12 rounded-full"
+                      )}
+                    >
+                      <item.icon className="size-6" stroke="#09090b" />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </DockIcon>
+            ))}
+            <Separator orientation="vertical" className="h-full" />
+            {Object.entries(navMenuData.contact.social).map(
+              ([name, social]) => (
+                <DockIcon key={name}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={social.url}
+                        aria-label={social.name}
+                        className={cn(
+                          buttonVariants({ variant: "ghost", size: "icon" }),
+                          "size-12 rounded-full"
+                        )}
+                      >
+                        <social.icon className="size-4" fill="#0" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </DockIcon>
+              )
+            )}
+            <Separator orientation="vertical" className="h-full py-2" />
+            <DockIcon>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  {/* <ModeToggle className="rounded-full" /> */}
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Theme</p>
+                </TooltipContent>
+              </Tooltip>
+            </DockIcon>
+          </Dock>
+        </TooltipProvider>
       </div>
     </div>
   );
