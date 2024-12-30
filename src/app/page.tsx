@@ -1,28 +1,32 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import {
   FileUser,
   MapPin,
   Info,
   MonitorSmartphone,
   SquareTerminal,
-  CalendarIcon,
   HomeIcon,
-  MailIcon,
   PencilIcon,
+  User,
+  ChartNoAxesColumn,
+  BriefcaseBusiness,
+  Laptop,
+  Sun,
+  Telescope,
+  Crown,
+  Command as CommandIcon,
 } from "lucide-react";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { Bar, BarChart, XAxis } from "recharts";
 import { GeistSans } from "geist/font/sans";
 
-import { cn } from "@/lib/utils";
 import { Dock, DockIcon } from "@/components/ui/dock";
 
-// import { ModeToggle } from "@/components/mode-toggle";
-import { buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -54,6 +58,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+
+import { DialogTitle } from "@/components/ui/dialog";
+
 import GitHubSvg from "@/components/svg/githubSvg";
 import LinkedInSvg from "@/components/svg/linkedinSvg";
 import TelegramSvg from "@/components/svg/telegramSvg";
@@ -61,35 +76,28 @@ import SpotifySvg from "@/components/svg/spotifySvg";
 import portfolioItem1 from "../../public/home/portfolio1.png";
 
 export default function Home() {
+  const [openCommand, setOpenCommand] = useState(false);
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      console.log("open");
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpenCommand((openCommand) => !openCommand);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+
   const navMenuData = {
     navbar: [
-      { href: "#", icon: HomeIcon, label: "Home" },
-      { href: "#", icon: PencilIcon, label: "Blog" },
+      { href: "#", icon: User, label: "About me" },
+      { href: "#", icon: ChartNoAxesColumn, label: "Coding stats" },
+      { href: "#", icon: BriefcaseBusiness, label: "Work experience" },
+      { href: "#", icon: Laptop, label: "My projects" },
     ],
-    contact: {
-      social: {
-        GitHub: {
-          name: "GitHub",
-          url: "#",
-          icon: GitHubSvg,
-        },
-        LinkedIn: {
-          name: "LinkedIn",
-          url: "#",
-          icon: LinkedInSvg,
-        },
-        X: {
-          name: "X",
-          url: "#",
-          icon: TelegramSvg,
-        },
-        email: {
-          name: "Send Email",
-          url: "#",
-          icon: MailIcon,
-        },
-      },
-    },
   };
   const chartData = [
     { month: "January", commits: 15 },
@@ -116,17 +124,17 @@ export default function Home() {
           <AvatarFallback>M</AvatarFallback>
         </Avatar>
         <div className="mb-3">
-          <h4 className="flex items-center">
+          <h4 className="flex items-start leading-[19px] mb-2">
             Mikhailo Kisil - Full-Stack Web Developer based in
-            <MapPin stroke="#09090b" className="inline w-4 h-4 ml-1" /> Lviv,
-            Ukraine
+            <MapPin stroke="#09090b" className="inline w-4 h-4 ml-1" />
+            Lviv, Ukraine
           </h4>
           <div className="flex gap-2">
-            <TooltipProvider>
+            <TooltipProvider delayDuration={300}>
               <Tooltip>
                 <TooltipTrigger>
-                  <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-20 text-[#555555] hover:text-[#09090b] transition-colors duration-300">
-                    <FileUser className="stroke-current" />
+                  <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-20 text-[#09090b] transition-colors duration-300">
+                    <FileUser className="stroke-current" strokeWidth={1.3} />
                     CV
                   </a>
                 </TooltipTrigger>
@@ -134,36 +142,30 @@ export default function Home() {
                   <p className={`${GeistSans.className}`}>Download my CV</p>
                 </TooltipContent>
               </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
                   <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group">
-                    <GitHubSvg className="fill-[#555555] group-hover:fill-[#09090b] transition-colors duration-300" />
+                    <GitHubSvg className="fill-[#09090b] transition-colors duration-300" />
                   </a>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className={`${GeistSans.className}`}>GitHub</p>
                 </TooltipContent>
               </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
                   <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group">
-                    <LinkedInSvg className="fill-[#555555] group-hover:fill-[#09090b] transition-colors duration-300" />
+                    <LinkedInSvg className="fill-[#09090b] transition-colors duration-300" />
                   </a>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className={`${GeistSans.className}`}>Linkedin</p>
                 </TooltipContent>
               </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
                   <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group">
-                    <TelegramSvg className="fill-[#555555] group-hover:fill-[#09090b] transition-colors duration-300" />
+                    <TelegramSvg className="fill-[#09090b] transition-colors duration-300" />
                   </a>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -187,19 +189,16 @@ export default function Home() {
         <div className="flex items-center gap-2 rounded-md px-5 py-3 bg-[#f4f4f5]">
           <div className="flex items-center">
             <div className="relative">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#F1C27B]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#37AFE1]" />
               <div className="absolute inset-0 animate-ping">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#FFD89C] opacity-75" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#4CC9FE] opacity-75" />
               </div>
-              <div className="absolute -inset-4 rounded-full blur-xl bg-[#FFD89C] opacity-20" />
+              <div className="absolute -inset-4 rounded-full blur-xl bg-[#4CC9FE] opacity-20" />
             </div>
           </div>
-          <div className="flex items-center text-sm text-[#555555]">
-            <span>
-              listening to music on{" "}
-              <span className="text-[#282A3A]">spotify</span>
-            </span>
-            <SpotifySvg className="inline ml-1" width={25} height={25} />
+          <div className="flex items-center text-sm text-[#282A3A]">
+            listening to music on spotify
+            <SpotifySvg className="inline ml-1" width={24} height={24} />
           </div>
         </div>
       </div>
@@ -266,7 +265,7 @@ export default function Home() {
         <Separator className="mb-5" />
         <div className="">
           <div className="flex justify-end mb-2">
-            <TooltipProvider>
+            <TooltipProvider delayDuration={300}>
               <Tooltip>
                 <TooltipTrigger>
                   <Info width={15} height={15} stroke="#09090b" />
@@ -355,24 +354,16 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-sm flex flex-col gap-1.5">
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
-                      Python (37%)
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
+                    <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      Python (37%){" "}
+                      <Crown strokeWidth={1} className="size-4 ml-1" />
+                    </span>
+                    <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       TypeScript (25%)
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
+                    </span>
+                    <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       JavaScript (20%)
-                    </Badge>
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -385,24 +376,16 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-sm flex flex-col gap-1.5">
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
-                      Python (37%)
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
+                    <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      Python (37%){" "}
+                      <Crown strokeWidth={1} className="size-4 ml-1" />
+                    </span>
+                    <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       TypeScript (25%)
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
+                    </span>
+                    <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       JavaScript (20%)
-                    </Badge>
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -417,24 +400,15 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-sm flex flex-col gap-1.5">
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
+                    <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit">
                       Python (37%)
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
+                    </span>
+                    <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit">
                       TypeScript (25%)
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="font-medium text-xs w-fit"
-                    >
+                    </span>
+                    <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit">
                       JavaScript (20%)
-                    </Badge>
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -537,7 +511,7 @@ export default function Home() {
                 </Badge>
               </CardContent>
               <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm bg-[#282A3A]">
+                <Button className="w-full text-sm">
                   <MonitorSmartphone stroke="#fff" />
                   Website
                 </Button>
@@ -572,7 +546,7 @@ export default function Home() {
                 </Badge>
               </CardContent>
               <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm bg-[#282A3A]">
+                <Button className="w-full text-sm">
                   <MonitorSmartphone stroke="#fff" />
                   Website
                 </Button>
@@ -607,7 +581,7 @@ export default function Home() {
                 </Badge>
               </CardContent>
               <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm bg-[#282A3A]">
+                <Button className="w-full text-sm">
                   <MonitorSmartphone stroke="#fff" />
                   Website
                 </Button>
@@ -642,7 +616,7 @@ export default function Home() {
                 </Badge>
               </CardContent>
               <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm bg-[#282A3A]">
+                <Button className="w-full text-sm">
                   <MonitorSmartphone stroke="#fff" />
                   Website
                 </Button>
@@ -656,28 +630,34 @@ export default function Home() {
         </div>
       </div>
       <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50">
-        <TooltipProvider>
+        <TooltipProvider delayDuration={300}>
           <Dock
             direction="bottom"
             iconSize={30}
             iconMagnification={50}
-            iconDistance={80}
+            iconDistance={90}
             className="bg-white shadow h-12"
           >
+            <Button
+              variant="secondary"
+              className="flex items-center h-full text-xs bg-black/10 dark:bg-white/10 text-muted-foreground px-2 py-3"
+              onClick={() => setOpenCommand(true)}
+            >
+              Search...
+              <kbd className="pointer-events-none flex items-center text-[10px] font-light gap-1 rounded opacity-100 border bg-muted px-1.5">
+                <CommandIcon strokeWidth={1.5} className="size-4" />
+                <span>K</span>
+              </kbd>
+            </Button>
+            <Separator orientation="vertical" className="h-full" />
             {navMenuData.navbar.map((item) => (
-              <DockIcon key={item.label}>
+              <DockIcon
+                key={item.label}
+                className="hover:bg-black/10 hover:dark:bg-white/10"
+              >
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Link
-                      href={item.href}
-                      aria-label={item.label}
-                      className={cn(
-                        buttonVariants({ variant: "ghost", size: "icon" }),
-                        "size-12 rounded-full"
-                      )}
-                    >
-                      <item.icon className="size-6" stroke="#09090b" />
-                    </Link>
+                    <item.icon className="size-full" stroke="#09090b" />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{item.label}</p>
@@ -685,43 +665,51 @@ export default function Home() {
                 </Tooltip>
               </DockIcon>
             ))}
-            <Separator orientation="vertical" className="h-full" />
-            {Object.entries(navMenuData.contact.social).map(
-              ([name, social]) => (
-                <DockIcon key={name}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href={social.url}
-                        aria-label={social.name}
-                        className={cn(
-                          buttonVariants({ variant: "ghost", size: "icon" }),
-                          "size-12 rounded-full"
-                        )}
-                      >
-                        <social.icon className="size-4" fill="#0" />
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{name}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </DockIcon>
-              )
-            )}
             <Separator orientation="vertical" className="h-full py-2" />
-            <DockIcon>
+            <DockIcon className="hover:bg-black/10 hover:dark:bg-white/10">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  {/* <ModeToggle className="rounded-full" /> */}
+                  <Sun className="size-full" stroke="#09090b" />
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Theme</p>
+                  <p>Toggle theme</p>
                 </TooltipContent>
               </Tooltip>
             </DockIcon>
           </Dock>
         </TooltipProvider>
+      </div>
+      <div>
+        <CommandDialog open={openCommand} onOpenChange={setOpenCommand}>
+          <DialogTitle className="sr-only">Command Dialog</DialogTitle>
+          <CommandInput
+            className={`${GeistSans.className}`}
+            placeholder="Type a command or search..."
+          />
+          <CommandList className={`${GeistSans.className}`}>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Suggestions">
+              <CommandItem className="!py-2.5 hover:cursor-pointer">
+                <FileUser strokeWidth={1.5} stroke="#09090b" />
+                CV
+              </CommandItem>
+              <CommandItem className="!py-2.5 hover:cursor-pointer">
+                <HomeIcon strokeWidth={1.5} stroke="#09090b" />
+                Home
+              </CommandItem>
+            </CommandGroup>
+            <CommandGroup heading="Other pages">
+              <CommandItem className="!py-2.5">
+                <PencilIcon strokeWidth={1.5} stroke="#09090b" />
+                Blog(in development)
+              </CommandItem>
+              <CommandItem className="!py-2.5">
+                <Telescope strokeWidth={1.5} stroke="#09090b" />
+                Hobby(in development)
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </CommandDialog>
       </div>
     </div>
   );
