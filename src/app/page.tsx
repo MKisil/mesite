@@ -10,10 +10,6 @@ import {
   SquareTerminal,
   HomeIcon,
   PencilIcon,
-  User,
-  ChartNoAxesColumn,
-  BriefcaseBusiness,
-  Laptop,
   Sun,
   Telescope,
   Crown,
@@ -69,11 +65,15 @@ import {
 
 import { DialogTitle } from "@/components/ui/dialog";
 
-import GitHubSvg from "@/components/svg/githubSvg";
-import LinkedInSvg from "@/components/svg/linkedinSvg";
-import TelegramSvg from "@/components/svg/telegramSvg";
 import SpotifySvg from "@/components/svg/spotifySvg";
-import portfolioItem1 from "../../public/home/portfolio1.png";
+
+import {
+  navMenuData,
+  socialLinks,
+  skills,
+  freelanceWorkSkills,
+  portfolioItems,
+} from "@/lib/data";
 
 export default function Home() {
   const [openCommand, setOpenCommand] = useState(false);
@@ -91,14 +91,6 @@ export default function Home() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const navMenuData = {
-    navbar: [
-      { href: "#", icon: User, label: "About me" },
-      { href: "#", icon: ChartNoAxesColumn, label: "Coding stats" },
-      { href: "#", icon: BriefcaseBusiness, label: "Work experience" },
-      { href: "#", icon: Laptop, label: "My projects" },
-    ],
-  };
   const chartData = [
     { month: "January", commits: 15 },
     { month: "February", commits: 305 },
@@ -142,36 +134,23 @@ export default function Home() {
                   <p className={`${GeistSans.className}`}>Download my CV</p>
                 </TooltipContent>
               </Tooltip>
-              <Tooltip>
-                <TooltipTrigger>
-                  <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group">
-                    <GitHubSvg className="fill-[#09090b] transition-colors duration-300" />
-                  </a>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className={`${GeistSans.className}`}>GitHub</p>
-                </TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger>
-                  <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group">
-                    <LinkedInSvg className="fill-[#09090b] transition-colors duration-300" />
-                  </a>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className={`${GeistSans.className}`}>Linkedin</p>
-                </TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger>
-                  <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group">
-                    <TelegramSvg className="fill-[#09090b] transition-colors duration-300" />
-                  </a>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className={`${GeistSans.className}`}>Telegram</p>
-                </TooltipContent>
-              </Tooltip>
+              {socialLinks.map((link) => (
+                <Tooltip key={link.label}>
+                  <TooltipTrigger>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group"
+                    >
+                      <link.icon className="fill-[#09090b] transition-colors duration-300" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className={`${GeistSans.className}`}>{link.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
             </TooltipProvider>
           </div>
         </div>
@@ -208,54 +187,11 @@ export default function Home() {
         </h2>
         <Separator className="mb-5" />
         <div className="flex flex-wrap gap-2 justify-center">
-          <Badge variant="outline" className="font-medium">
-            Python
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            JavaScript
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            TypeScript
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            Django
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            Django rest framework
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            FastAPI
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            Flask
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            Docker
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            Git/GitHub
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            AWS(S3)
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            Redis
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            PostgreSQL
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            HTML
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            CSS
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            React
-          </Badge>
-          <Badge variant="outline" className="font-medium">
-            Tailwind CSS
-          </Badge>
+          {skills.map((skill) => (
+            <Badge key={skill.name} variant="outline" className="font-medium">
+              {skill.name}
+            </Badge>
+          ))}
         </div>
       </div>
       <div className="mb-20">
@@ -454,24 +390,15 @@ export default function Home() {
                     </ul>
                   </AccordionContent>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="font-medium">
-                      Python
-                    </Badge>
-                    <Badge variant="outline" className="font-medium">
-                      JavaScript
-                    </Badge>
-                    <Badge variant="outline" className="font-medium">
-                      Django
-                    </Badge>
-                    <Badge variant="outline" className="font-medium">
-                      FastAPI
-                    </Badge>
-                    <Badge variant="outline" className="font-medium">
-                      React
-                    </Badge>
-                    <Badge variant="outline" className="font-medium">
-                      OpenaiAPI
-                    </Badge>
+                    {freelanceWorkSkills.map((skill) => (
+                      <Badge
+                        key={skill.name}
+                        variant="outline"
+                        className="font-medium"
+                      >
+                        {skill.name}
+                      </Badge>
+                    ))}
                   </div>
                 </div>
               </AccordionTrigger>
@@ -486,146 +413,40 @@ export default function Home() {
         <Separator className="mb-5" />
         <div>
           <div className="grid grid-cols-2 gap-2.5">
-            <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
-              <Image src={portfolioItem1} alt="Project" />
-              <CardHeader className="pb-3">
-                <CardTitle className="font-medium">Most used tools</CardTitle>
-                <CardDescription>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Earum, cumque cupiditate facilis ipsam assumenda aut ad quos
-                  nulla perferendis quibusdam.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-1 mb-3">
-                <Badge variant="outline" className="font-medium">
-                  Django
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  FastAPI
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  React
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  OpenaiAPI
-                </Badge>
-              </CardContent>
-              <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm">
-                  <MonitorSmartphone stroke="#fff" />
-                  Website
-                </Button>
-                <Button className="w-full text-sm" variant="outline">
-                  <SquareTerminal stroke="#09090b" />
-                  Code
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
-              <Image src={portfolioItem1} alt="Project" />
-              <CardHeader className="pb-3">
-                <CardTitle className="font-medium">Most used tools</CardTitle>
-                <CardDescription>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Earum, cumque cupiditate facilis ipsam assumenda aut ad quos
-                  nulla perferendis quibusdam.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-1 mb-3">
-                <Badge variant="outline" className="font-medium">
-                  Django
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  FastAPI
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  React
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  OpenaiAPI
-                </Badge>
-              </CardContent>
-              <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm">
-                  <MonitorSmartphone stroke="#fff" />
-                  Website
-                </Button>
-                <Button className="w-full text-sm" variant="outline">
-                  <SquareTerminal stroke="#09090b" />
-                  Code
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
-              <Image src={portfolioItem1} alt="Project" />
-              <CardHeader className="pb-3">
-                <CardTitle className="font-medium">Most used tools</CardTitle>
-                <CardDescription>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Earum, cumque cupiditate facilis ipsam assumenda aut ad quos
-                  nulla perferendis quibusdam.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-1 mb-3">
-                <Badge variant="outline" className="font-medium">
-                  Django
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  FastAPI
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  React
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  OpenaiAPI
-                </Badge>
-              </CardContent>
-              <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm">
-                  <MonitorSmartphone stroke="#fff" />
-                  Website
-                </Button>
-                <Button className="w-full text-sm" variant="outline">
-                  <SquareTerminal stroke="#09090b" />
-                  Code
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
-              <Image src={portfolioItem1} alt="Project" />
-              <CardHeader className="pb-3">
-                <CardTitle className="font-medium">Most used tools</CardTitle>
-                <CardDescription>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Earum, cumque cupiditate facilis ipsam assumenda aut ad quos
-                  nulla perferendis quibusdam.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-1 mb-3">
-                <Badge variant="outline" className="font-medium">
-                  Django
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  FastAPI
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  React
-                </Badge>
-                <Badge variant="outline" className="font-medium">
-                  OpenaiAPI
-                </Badge>
-              </CardContent>
-              <CardFooter className="flex gap-1.5">
-                <Button className="w-full text-sm">
-                  <MonitorSmartphone stroke="#fff" />
-                  Website
-                </Button>
-                <Button className="w-full text-sm" variant="outline">
-                  <SquareTerminal stroke="#09090b" />
-                  Code
-                </Button>
-              </CardFooter>
-            </Card>
+            {portfolioItems.map((item) => (
+              <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+                <Image src={item.image} alt="Project" />
+                <CardHeader className="pb-3">
+                  <CardTitle className="font-medium">{item.title}</CardTitle>
+                  <CardDescription>{item.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-1 mb-3">
+                  {item.tools.map((tool) => (
+                    <Badge
+                      key={tool.name}
+                      variant="outline"
+                      className="font-medium"
+                    >
+                      {tool.name}
+                    </Badge>
+                  ))}
+                </CardContent>
+                <CardFooter className="flex gap-1.5">
+                  <Button>
+                    <a className="w-full text-sm" href={item.websiteLink}>
+                      <MonitorSmartphone stroke="#fff" />
+                      Website
+                    </a>
+                  </Button>
+                  <Button variant="outline">
+                    <a className="w-full text-sm" href={item.codeLink}>
+                      <SquareTerminal stroke="#09090b" />
+                      Code
+                    </a>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
