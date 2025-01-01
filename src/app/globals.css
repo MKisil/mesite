@@ -71,6 +71,16 @@ body {
   }
 }
 
+@layer utilities {
+  .responsive-text-base {
+    @apply text-[15px] sm:text-base;
+  }
+
+  .responsive-text-lg {
+    @apply text-[17px] sm:text-lg;
+  }
+}
+
 .container {
   @apply flex 
          flex-col 

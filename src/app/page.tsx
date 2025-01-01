@@ -13,6 +13,7 @@ import {
   Sun,
   Telescope,
   Crown,
+  Search,
   Command as CommandIcon,
 } from "lucide-react";
 
@@ -116,10 +117,12 @@ export default function Home() {
           <AvatarFallback>M</AvatarFallback>
         </Avatar>
         <div className="mb-3">
-          <h4 className="flex items-start leading-[19px] mb-2">
-            Mikhailo Kisil - Full-Stack Web Developer based in
-            <MapPin stroke="#09090b" className="inline w-4 h-4 ml-1" />
-            Lviv, Ukraine
+          <h4 className="inline-flex items-center flex-wrap leading-[19px] responsive-text-base mb-1 gap-1">
+            Mikhailok - Full-Stack Web Developer based in
+            <span className="leading-[19px] inline-flex items-start">
+              <MapPin stroke="#09090b" className="inline w-4 h-4" />
+              Lviv, Ukraine
+            </span>
           </h4>
           <div className="flex gap-2">
             <TooltipProvider delayDuration={300}>
@@ -155,7 +158,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mb-5">
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground responsive-text-base">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est
             aliquid facere assumenda quis, voluptates labore magnam tempora,
             corrupti suscipit, aperiam aspernatur reiciendis. Tempora officia
@@ -182,7 +185,7 @@ export default function Home() {
         </div>
       </div>
       <div className="mb-20">
-        <h2 className="scroll-m-20 text-lg text-center tracking-tight mb-1 font-medium">
+        <h2 className="scroll-m-20 responsive-text-lg text-center tracking-tight mb-1 font-medium">
           Skills
         </h2>
         <Separator className="mb-5" />
@@ -195,7 +198,7 @@ export default function Home() {
         </div>
       </div>
       <div className="mb-20">
-        <h2 className="scroll-m-20 text-lg text-center tracking-tight mb-1 font-medium">
+        <h2 className="scroll-m-20 responsive-text-lg text-center tracking-tight mb-1 font-medium">
           Coding Stats
         </h2>
         <Separator className="mb-5" />
@@ -279,11 +282,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="grid grid-rows-2 gap-2.5">
-            <div className="flex gap-2.5">
+          <div className="flex flex-col gap-2.5 sm:grid sm:grid-rows-2">
+            <div className="flex flex-col gap-2.5 sm:flex-row">
               <Card className="flex-1 transition-transform duration-300 hover:scale-[1.02]">
                 <CardHeader>
-                  <CardTitle className="font-medium">Most used tools</CardTitle>
+                  <CardTitle className="font-medium responsive-text-base">
+                    Most used tools
+                  </CardTitle>
                   <CardDescription>
                     I frequently use various technologies in my projects.
                   </CardDescription>
@@ -292,7 +297,11 @@ export default function Home() {
                   <div className="text-sm flex flex-col gap-1.5">
                     <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       Python (37%){" "}
-                      <Crown strokeWidth={1} className="size-4 ml-1" />
+                      <Crown
+                        strokeWidth={1.5}
+                        stroke="#FAB12F"
+                        className="size-4 ml-1"
+                      />
                     </span>
                     <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       TypeScript (25%)
@@ -305,7 +314,9 @@ export default function Home() {
               </Card>
               <Card className="flex-1 transition-transform duration-300 hover:scale-[1.02]">
                 <CardHeader>
-                  <CardTitle className="font-medium">Most used tools</CardTitle>
+                  <CardTitle className="font-medium responsive-text-base">
+                    Most used tools
+                  </CardTitle>
                   <CardDescription>
                     I frequently use various technologies in my projects.
                   </CardDescription>
@@ -314,7 +325,11 @@ export default function Home() {
                   <div className="text-sm flex flex-col gap-1.5">
                     <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       Python (37%){" "}
-                      <Crown strokeWidth={1} className="size-4 ml-1" />
+                      <Crown
+                        strokeWidth={1.5}
+                        stroke="#FAB12F"
+                        className="size-4 ml-1"
+                      />
                     </span>
                     <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                       TypeScript (25%)
@@ -329,7 +344,9 @@ export default function Home() {
             <div>
               <Card className="transition-transform duration-300 hover:scale-[1.02]">
                 <CardHeader>
-                  <CardTitle className="font-medium">Most used tools</CardTitle>
+                  <CardTitle className="font-medium responsive-text-base">
+                    Most used tools
+                  </CardTitle>
                   <CardDescription>
                     I frequently use various technologies in my projects.
                   </CardDescription>
@@ -353,7 +370,7 @@ export default function Home() {
         </div>
       </div>
       <div className="mb-20">
-        <h2 className="scroll-m-20 text-lg text-center tracking-tight mb-1 font-medium">
+        <h2 className="scroll-m-20 responsive-text-lg text-center tracking-tight mb-1 font-medium">
           Work Experience
         </h2>
         <Separator className="mb-5" />
@@ -367,7 +384,7 @@ export default function Home() {
               <AccordionTrigger className="mb-7">
                 <div className="flex flex-col font-normal leading-4">
                   <div className="mb-5">
-                    <h3 className="text-base leading-7 font-medium">
+                    <h3 className="text-base leading-7 font-medium responsive-text-base">
                       Freelance(self-employed)
                     </h3>
                     <p className="text-muted-foreground">
@@ -406,18 +423,20 @@ export default function Home() {
           </Accordion>
         </div>
       </div>
-      <div className="mb-5">
-        <h2 className="scroll-m-20 text-lg text-center tracking-tight mb-1 font-medium">
+      <div className="mb-20">
+        <h2 className="scroll-m-20 responsive-text-lg text-center tracking-tight mb-1 font-medium">
           My Projects
         </h2>
         <Separator className="mb-5" />
         <div>
-          <div className="grid grid-cols-2 gap-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 justify-items-center">
             {portfolioItems.map((item) => (
-              <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+              <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02] max-w-72 sm:max-w-none">
                 <Image src={item.image} alt="Project" />
                 <CardHeader className="pb-3">
-                  <CardTitle className="font-medium">{item.title}</CardTitle>
+                  <CardTitle className="font-medium responsive-text-base">
+                    {item.title}
+                  </CardTitle>
                   <CardDescription>{item.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-wrap gap-1 mb-3">
@@ -431,15 +450,21 @@ export default function Home() {
                     </Badge>
                   ))}
                 </CardContent>
-                <CardFooter className="flex gap-1.5">
-                  <Button>
-                    <a className="w-full text-sm" href={item.websiteLink}>
+                <CardFooter className="flex gap-1.5 justify-center">
+                  <Button className="h-auto px-3.5 py-2">
+                    <a
+                      className="flex w-full text-xs gap-1 items-center"
+                      href={item.websiteLink}
+                    >
                       <MonitorSmartphone stroke="#fff" />
                       Website
                     </a>
                   </Button>
-                  <Button variant="outline">
-                    <a className="w-full text-sm" href={item.codeLink}>
+                  <Button variant="outline" className="h-auto px-3.5 py-2">
+                    <a
+                      className="flex w-full text-xs gap-1 items-center"
+                      href={item.codeLink}
+                    >
                       <SquareTerminal stroke="#09090b" />
                       Code
                     </a>
@@ -464,8 +489,9 @@ export default function Home() {
               className="flex items-center h-full text-xs bg-black/10 dark:bg-white/10 text-muted-foreground px-2 py-3"
               onClick={() => setOpenCommand(true)}
             >
-              Search...
-              <kbd className="pointer-events-none flex items-center text-[10px] font-light gap-1 rounded opacity-100 border bg-muted px-1.5">
+              <Search className="md:hidden" />
+              <span className="hidden md:block">Search...</span>
+              <kbd className="pointer-events-none text-[10px] font-light gap-1 rounded opacity-100 border bg-muted px-1.5 hidden md:flex items-center">
                 <CommandIcon strokeWidth={1.5} className="size-4" />
                 <span>K</span>
               </kbd>
