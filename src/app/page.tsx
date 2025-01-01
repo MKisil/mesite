@@ -431,7 +431,10 @@ export default function Home() {
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 justify-items-center">
             {portfolioItems.map((item) => (
-              <Card className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02] max-w-72 sm:max-w-none">
+              <Card
+                key={item.title}
+                className="flex-1 overflow-hidden transition-transform duration-300 hover:scale-[1.02] max-w-72 sm:max-w-none"
+              >
                 <Image src={item.image} alt="Project" />
                 <CardHeader className="pb-3">
                   <CardTitle className="font-medium responsive-text-base">

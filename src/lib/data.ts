@@ -101,7 +101,7 @@ export const freelanceWorkSkills: Skill[] = [
 export const portfolioItems: ProjectItem[] = [
   {
     image: portfolioItem1, 
-    title: "Most used tools",
+    title: "Project1",
     description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, cumque cupiditate facilis ipsam assumenda aut ad quos nulla perferendis quibusdam.",
     tools: [
       { name: "Python" },
@@ -114,7 +114,7 @@ export const portfolioItems: ProjectItem[] = [
   },
   {
     image: portfolioItem1, 
-    title: "Most used tools",
+    title: "Project2",
     description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, cumque cupiditate facilis ipsam assumenda aut ad quos nulla perferendis quibusdam.",
     tools: [
       { name: "Python" },
@@ -127,7 +127,7 @@ export const portfolioItems: ProjectItem[] = [
   },
   {
     image: portfolioItem1, 
-    title: "Most used tools",
+    title: "Project3",
     description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, cumque cupiditate facilis ipsam assumenda aut ad quos nulla perferendis quibusdam.",
     tools: [
       { name: "Python" },
