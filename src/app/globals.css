@@ -85,8 +85,6 @@ body {
   @apply flex 
          flex-col 
          max-w-xl
-         mt-[50px] 
-         md:mt-[100px] 
          ml-auto 
          mr-auto
          px-3.5;
