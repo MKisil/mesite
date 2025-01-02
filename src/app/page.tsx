@@ -150,7 +150,7 @@ export default function Home() {
             <h4 className="inline-flex items-center flex-wrap leading-[19px] responsive-text-base mb-1 gap-1">
               Mikhailok - Full-Stack Web Developer based in
               <span className="leading-[19px] inline-flex items-start">
-                <MapPin className="inline w-4 h-4" />
+                <MapPin className="stroke-[hsl(var(--primary))] inline w-4 h-4" />
                 Lviv, Ukraine
               </span>
             </h4>
@@ -158,8 +158,11 @@ export default function Home() {
               <TooltipProvider delayDuration={300}>
                 <Tooltip>
                   <TooltipTrigger>
-                    <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-20 text-[#09090b] transition-colors duration-300">
-                      <FileUser className="stroke-current" strokeWidth={1.3} />
+                    <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-20 transition-colors duration-300">
+                      <FileUser
+                        className="stroke-[hsl(var(--primary))]"
+                        strokeWidth={1.3}
+                      />
                       CV
                     </a>
                   </TooltipTrigger>
@@ -176,7 +179,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="a-outline-button [&_svg]:size-6 p-0 h-9 w-9 group"
                       >
-                        <link.icon className="fill-[#09090b] transition-colors duration-300" />
+                        <link.icon className="fill-[hsl(var(--primary))] transition-colors duration-300" />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -198,7 +201,7 @@ export default function Home() {
               eum veniam velit.
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-md px-5 py-3 bg-[#f4f4f5]">
+          <div className="flex items-center gap-2 rounded-md px-5 py-3 bg-border/40">
             <div className="flex items-center">
               <div className="relative">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#37AFE1]" />
@@ -208,7 +211,7 @@ export default function Home() {
                 <div className="absolute -inset-4 rounded-full blur-xl bg-[#4CC9FE] opacity-20" />
               </div>
             </div>
-            <div className="flex items-center text-sm text-[#282A3A]">
+            <div className="flex items-center text-sm text-[#282A3A] dark:text-[#fafafa]">
               listening to music on spotify
               <SpotifySvg className="inline ml-1" width={24} height={24} />
             </div>
@@ -286,7 +289,7 @@ export default function Home() {
               </div>
               <ChartContainer
                 config={chartConfig}
-                className="min-h-[130px] max-h-[130px] w-full"
+                className="min-h-[130px] max-h-[130px] w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-transparent"
               >
                 <BarChart data={chartData}>
                   <XAxis
@@ -299,10 +302,9 @@ export default function Home() {
                   <ChartTooltip content={<ChartTooltipContent />} />
                   <Bar
                     dataKey="commits"
-                    fill="#282A3A"
+                    fill="var(--chart-6)"
                     radius={4}
-                    stroke="#09090b"
-                    strokeWidth={1}
+                    stroke="var(--chart-6)"
                   />
                 </BarChart>
               </ChartContainer>
@@ -325,7 +327,7 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-sm flex flex-col gap-1.5">
-                      <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         Python (37%){" "}
                         <Crown
                           strokeWidth={1.5}
@@ -333,10 +335,10 @@ export default function Home() {
                           className="size-4 ml-1"
                         />
                       </span>
-                      <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         TypeScript (25%)
                       </span>
-                      <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         JavaScript (20%)
                       </span>
                     </div>
@@ -353,7 +355,7 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-sm flex flex-col gap-1.5">
-                      <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         Python (37%){" "}
                         <Crown
                           strokeWidth={1.5}
@@ -361,10 +363,10 @@ export default function Home() {
                           className="size-4 ml-1"
                         />
                       </span>
-                      <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         TypeScript (25%)
                       </span>
-                      <span className="inline-flex items-end rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         JavaScript (20%)
                       </span>
                     </div>
@@ -383,13 +385,18 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-sm flex flex-col gap-1.5">
-                      <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit">
-                        Python (37%)
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
+                        Python (37%){" "}
+                        <Crown
+                          strokeWidth={1.5}
+                          stroke="#FAB12F"
+                          className="size-4 ml-1"
+                        />
                       </span>
-                      <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         TypeScript (25%)
                       </span>
-                      <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 w-fit">
+                      <span className="inline-flex items-end rounded-md bg-[--stats-badge-bg] px-2 py-1 text-xs font-medium text-[--stats-badge-text] ring-1 ring-inset ring-gray-500/10 w-fit leading-[14px]">
                         JavaScript (20%)
                       </span>
                     </div>
@@ -491,7 +498,7 @@ export default function Home() {
                         className="flex w-full text-xs gap-1 items-center"
                         href={item.websiteLink}
                       >
-                        <MonitorSmartphone stroke="#fff" />
+                        <MonitorSmartphone className="stroke-[hsl(var(--primary-foreground))]" />
                         Website
                       </a>
                     </Button>
@@ -500,7 +507,7 @@ export default function Home() {
                         className="flex w-full text-xs gap-1 items-center"
                         href={item.codeLink}
                       >
-                        <SquareTerminal stroke="#09090b" />
+                        <SquareTerminal className="stroke-[hsl(var(--primary))]" />
                         Code
                       </a>
                     </Button>
@@ -517,7 +524,7 @@ export default function Home() {
               iconSize={30}
               iconMagnification={50}
               iconDistance={90}
-              className="bg-white shadow h-12"
+              className="bg-[white] dark:bg-[#131313] dark:border-[#212121] shadow h-12"
             >
               <Button
                 variant="secondary"
@@ -539,7 +546,7 @@ export default function Home() {
                 >
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <item.icon className="size-full" stroke="#09090b" />
+                      <item.icon className="size-full stroke-[hsl(var(--primary))]" />
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{item.label}</p>
@@ -558,7 +565,7 @@ export default function Home() {
                       )
                     }
                   >
-                    <Sun className="size-full" stroke="#09090b" />
+                    <Sun className="size-full stroke-[hsl(var(--primary))]" />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Toggle theme</p>
@@ -580,21 +587,33 @@ export default function Home() {
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Suggestions">
               <CommandItem className="!py-2.5 hover:cursor-pointer">
-                <FileUser strokeWidth={1.5} stroke="#09090b" />
+                <FileUser
+                  strokeWidth={1.5}
+                  className="stroke-[hsl(var(--primary))]"
+                />
                 CV
               </CommandItem>
               <CommandItem className="!py-2.5 hover:cursor-pointer">
-                <HomeIcon strokeWidth={1.5} stroke="#09090b" />
+                <HomeIcon
+                  strokeWidth={1.5}
+                  className="stroke-[hsl(var(--primary))]"
+                />
                 Home
               </CommandItem>
             </CommandGroup>
             <CommandGroup heading="Other pages">
               <CommandItem className="!py-2.5">
-                <PencilIcon strokeWidth={1.5} stroke="#09090b" />
+                <PencilIcon
+                  strokeWidth={1.5}
+                  className="stroke-[hsl(var(--primary))]"
+                />
                 Blog(in development)
               </CommandItem>
               <CommandItem className="!py-2.5">
-                <Telescope strokeWidth={1.5} stroke="#09090b" />
+                <Telescope
+                  strokeWidth={1.5}
+                  className="stroke-[hsl(var(--primary))]"
+                />
                 Hobby(in development)
               </CommandItem>
             </CommandGroup>
