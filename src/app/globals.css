@@ -62,7 +62,8 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --chart-6: #393e46;
+    /* --chart-6: #393e46; */
+    --chart-6: #272729;
     --stats-badge-bg: #27272a66;
     --stats-badge-text: #d1d5db;
   }

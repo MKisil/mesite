@@ -1,28 +1,15 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 import {
   FileUser,
   MapPin,
   Info,
   MonitorSmartphone,
   SquareTerminal,
-  HomeIcon,
-  PencilIcon,
-  Sun,
-  Telescope,
   Crown,
-  Search,
-  Command as CommandIcon,
 } from "lucide-react";
 
 import Image from "next/image";
 
-import { Bar, BarChart, XAxis } from "recharts";
-import { GeistSans } from "geist/font/sans";
-
-import { Dock, DockIcon } from "@/components/ui/dock";
+import { geistSans } from "@/app/fonts";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
@@ -33,13 +20,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion-work";
-import {
-  type ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+} from "@/components/ui/accordionWork";
+import { type ChartConfig } from "@/components/ui/chart";
 import {
   Tooltip,
   TooltipContent,
@@ -54,70 +36,35 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-
-import { DialogTitle } from "@/components/ui/dialog";
-
+import ChartData from "@/components/ui/chartData/chartData";
 import BlurFade from "@/components/ui/blur-fade";
-
 import SpotifySvg from "@/components/svg/spotifySvg";
+import DockNav from "@/components/layout/dockNav";
 
 import {
-  navMenuData,
   socialLinks,
   skills,
   freelanceWorkSkills,
   portfolioItems,
 } from "@/lib/data";
 
-import { blurDelay } from "@/lib/utils";
+import { blurDelay } from "@/lib/utils/general";
+import {
+  fetchGithubContributions,
+  transformGithubContributionsData,
+} from "@/lib/utils/getGithubContributions";
 
-import { useTheme } from "next-themes";
-
-export default function Home() {
-  const { setTheme } = useTheme();
-  const [openCommand, setOpenCommand] = useState(false);
-
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      console.log("open");
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpenCommand((openCommand) => !openCommand);
-      }
-    };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
-
-  const chartData = [
-    { month: "January", commits: 15 },
-    { month: "February", commits: 305 },
-    { month: "March", commits: 237 },
-    { month: "April", commits: 73 },
-    { month: "May", commits: 209 },
-    { month: "June", commits: 214 },
-    { month: "July", commits: 186 },
-    { month: "August", commits: 305 },
-    { month: "September", commits: 237 },
-    { month: "October", commits: 73 },
-    { month: "November", commits: 209 },
-    { month: "December", commits: 214 },
-  ];
+export default async function Home() {
+  const githubContributionsbData = await fetchGithubContributions();
+  const chartGithubContributionsbData = transformGithubContributionsData(
+    githubContributionsbData
+  );
+  const chartData = chartGithubContributionsbData;
 
   const chartConfig = {} satisfies ChartConfig;
 
   return (
-    <div className={`container ${GeistSans.className}`}>
+    <div className={`container ${geistSans.className}`}>
       <div className="sticky top-0 z-50 w-full flex">
         <div className="relative h-20 sm:h-40 overflow-hidden rounded-b-2xl w-full xl:block">
           <div className="pointer-events-none absolute bottom-0 z-10 h-full w-full overflow-hidden rounded-b-2xl">
@@ -177,7 +124,7 @@ export default function Home() {
                     </BlurFade>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p className={`${GeistSans.className}`}>Download my CV</p>
+                    <p className={`${geistSans.className}`}>Download my CV</p>
                   </TooltipContent>
                 </Tooltip>
                 {socialLinks.map((link, index) => (
@@ -195,7 +142,7 @@ export default function Home() {
                       </BlurFade>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p className={`${GeistSans.className}`}>{link.label}</p>
+                      <p className={`${geistSans.className}`}>{link.label}</p>
                     </TooltipContent>
                   </Tooltip>
                 ))}
@@ -266,7 +213,7 @@ export default function Home() {
                       <Info width={15} height={15} stroke="#09090b" />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p className={`${GeistSans.className}`}>
+                      <p className={`${geistSans.className}`}>
                         This information is taken from my{" "}
                         <a
                           href="https://github.com/MKisil"
@@ -292,54 +239,7 @@ export default function Home() {
                 </TooltipProvider>
               </div>
             </BlurFade>
-            <div className="mb-6">
-              <BlurFade delay={blurDelay * 2}>
-                <div className="flex justify-around mb-5">
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-xs text-muted-foreground">
-                      Total repositories
-                    </span>
-                    <span className="text-lg font-bold leading-none sm:text-xl">
-                      19
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-xs text-muted-foreground">
-                      Contibutions last year
-                    </span>
-                    <span className="text-lg font-bold leading-none sm:text-xl">
-                      453
-                    </span>
-                  </div>
-                </div>
-                <ChartContainer
-                  config={chartConfig}
-                  className="min-h-[130px] max-h-[130px] w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-transparent"
-                >
-                  <BarChart data={chartData}>
-                    <XAxis
-                      dataKey="month"
-                      tickLine={false}
-                      tickMargin={10}
-                      axisLine={false}
-                      tickFormatter={(value) => value.slice(0, 3)}
-                    />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <Bar
-                      dataKey="commits"
-                      fill="var(--chart-6)"
-                      radius={4}
-                      stroke="var(--chart-6)"
-                    />
-                  </BarChart>
-                </ChartContainer>
-                <div>
-                  <div className="flex justify-center gap-1 mt-1.5">
-                    <span className="text-xs">Past year activity</span>
-                  </div>
-                </div>
-              </BlurFade>
-            </div>
+            <ChartData config={chartConfig} data={chartData} />
             <div className="flex flex-col gap-2.5 sm:grid sm:grid-rows-2">
               <div className="flex flex-col gap-2.5 sm:flex-row">
                 <BlurFade delay={blurDelay * 3}>
@@ -554,111 +454,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50">
-          <TooltipProvider delayDuration={300}>
-            <BlurFade delay={blurDelay}>
-              <Dock
-                direction="bottom"
-                iconSize={30}
-                iconMagnification={50}
-                iconDistance={90}
-                className="bg-[white] dark:bg-[#131313] dark:border-[#212121] shadow h-12"
-              >
-                <Button
-                  variant="secondary"
-                  className="flex items-center h-full text-xs bg-black/10 dark:bg-white/10 text-muted-foreground px-2 py-3"
-                  onClick={() => setOpenCommand(true)}
-                >
-                  <Search className="md:hidden" />
-                  <span className="hidden md:block">Search...</span>
-                  <kbd className="pointer-events-none text-[10px] font-light gap-1 rounded opacity-100 border bg-muted px-1.5 hidden md:flex items-center">
-                    <CommandIcon strokeWidth={1.5} className="size-4" />
-                    <span>K</span>
-                  </kbd>
-                </Button>
-                <Separator orientation="vertical" className="h-full" />
-                {navMenuData.navbar.map((item) => (
-                  <DockIcon
-                    key={item.label}
-                    className="hover:bg-black/10 hover:dark:bg-white/10"
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <item.icon className="size-full stroke-[hsl(var(--primary))]" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{item.label}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </DockIcon>
-                ))}
-                <Separator orientation="vertical" className="h-full py-2" />
-                <DockIcon className="hover:bg-black/10 hover:dark:bg-white/10">
-                  <Tooltip>
-                    <TooltipTrigger
-                      asChild
-                      onClick={() =>
-                        setTheme((prevTheme) =>
-                          prevTheme === "dark" ? "light" : "dark"
-                        )
-                      }
-                    >
-                      <Sun className="size-full stroke-[hsl(var(--primary))]" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Toggle theme</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </DockIcon>
-              </Dock>
-            </BlurFade>
-          </TooltipProvider>
-        </div>
+        <DockNav></DockNav>
       </main>
-      <div>
-        <CommandDialog open={openCommand} onOpenChange={setOpenCommand}>
-          <DialogTitle className="sr-only">Command Dialog</DialogTitle>
-          <CommandInput
-            className={`${GeistSans.className}`}
-            placeholder="Type a command or search..."
-          />
-          <CommandList className={`${GeistSans.className}`}>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem className="!py-2.5 hover:cursor-pointer">
-                <FileUser
-                  strokeWidth={1.5}
-                  className="stroke-[hsl(var(--primary))]"
-                />
-                CV
-              </CommandItem>
-              <CommandItem className="!py-2.5 hover:cursor-pointer">
-                <HomeIcon
-                  strokeWidth={1.5}
-                  className="stroke-[hsl(var(--primary))]"
-                />
-                Home
-              </CommandItem>
-            </CommandGroup>
-            <CommandGroup heading="Other pages">
-              <CommandItem className="!py-2.5">
-                <PencilIcon
-                  strokeWidth={1.5}
-                  className="stroke-[hsl(var(--primary))]"
-                />
-                Blog(in development)
-              </CommandItem>
-              <CommandItem className="!py-2.5">
-                <Telescope
-                  strokeWidth={1.5}
-                  className="stroke-[hsl(var(--primary))]"
-                />
-                Hobby(in development)
-              </CommandItem>
-            </CommandGroup>
-          </CommandList>
-        </CommandDialog>
-      </div>
     </div>
   );
 }
