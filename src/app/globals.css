@@ -36,6 +36,7 @@ body {
     --chart-6: #282a3a;
     --stats-badge-bg: #f9fafbl;
     --stats-badge-text: #4b5563;
+    --crown-stroke: #fab12f;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -62,9 +63,10 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --chart-6: #939395;
+    --chart-6: #e5e5e5;
     --stats-badge-bg: #27272a66;
     --stats-badge-text: #d1d5db;
+    --crown-stroke: #f0bb78;
   }
 }
 

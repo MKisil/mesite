@@ -29,7 +29,11 @@ export default function StatsBadgeList({
         >
           {item.name} ({Math.round(item.percent)}%)
           {showCrown && index === 0 && (
-            <Crown strokeWidth={1.5} stroke="#FAB12F" className="size-4 ml-1" />
+            <Crown
+              strokeWidth={1.5}
+              stroke="var(--crown-stroke)"
+              className="size-4 ml-1"
+            />
           )}
         </span>
       ))}
