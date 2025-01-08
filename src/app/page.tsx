@@ -91,7 +91,7 @@ export default async function Home() {
   } satisfies ChartConfig;
 
   return (
-    <div className={`container ${geistSans.className} mt-36`}>
+    <div className={`container ${geistSans.className} mt-16 md:mt-36`}>
       <SmoothScroll />
       <main className="mt-[10px] md:mt-[20px]">
         <div className="block-margin-bottom" id="about">
@@ -104,7 +104,8 @@ export default async function Home() {
           <div className="mb-3">
             <BlurFade delay={blurDelay}>
               <h4 className="inline-flex items-center flex-wrap leading-[19px] responsive-text-base mb-1 gap-1">
-                Mikhailok - Full-Stack Web Developer based in
+                Mikhailok - <span className="hidden sm:block">Full-Stack</span>{" "}
+                Web Developer based in
                 <span className="leading-[19px] inline-flex items-start">
                   <MapPin className="stroke-[hsl(var(--primary))] inline w-4 h-4" />
                   Lviv, Ukraine
@@ -388,7 +389,7 @@ export default async function Home() {
             <Separator className="mb-5" />
           </BlurFade>
           <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 justify-items-center">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2.5 justify-items-center">
               {portfolioItems.map((item, index) => (
                 <BlurFade delay={blurDelay * (index + 1)} key={item.title}>
                   <Card className="h-full overflow-hidden transition-transform duration-300 hover:scale-[1.02] max-w-72 sm:max-w-none">
