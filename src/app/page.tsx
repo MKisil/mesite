@@ -63,7 +63,7 @@ import {
   getTopOperatingSystems,
 } from "@/lib/utils/getWakatimeProfileData";
 
-import SelfEmployedImage from "../../public/home/selfEmployed.png";
+import SelfEmployedImage from "../../public/home/SelfEmployed.png";
 import LogoImage from "../../public/home/logo.png";
 
 export default async function Home() {
