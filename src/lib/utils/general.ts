@@ -7,3 +7,4 @@ export function cn(...inputs: ClassValue[]) {
 
 
 export const blurDelay: number = 0.1
+export const revalidate: number = 60 * 60 * 24

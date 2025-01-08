@@ -10,28 +10,44 @@ import {
 
 import BlurFade from "@/components/ui/blur-fade";
 import { blurDelay } from "@/lib/utils/general";
+import { type ChartConfig } from "@/components/ui/chart";
 
-import { ChartDataProps } from "./chartData.types";
+interface DataPoint {
+  label: string | number;
+  value: string | number;
+}
 
-export default function ChartData({ config, data }: ChartDataProps) {
+interface ChartDataProps {
+  config: ChartConfig;
+  card1Title: string;
+  card1Content: string;
+  card2Title: string;
+  card2Content: string;
+  data: DataPoint[];
+}
+
+export default function ChartData({
+  config,
+  card1Title,
+  card1Content,
+  card2Title,
+  card2Content,
+  data,
+}: ChartDataProps) {
   return (
     <div className="mb-6">
       <BlurFade delay={blurDelay * 2}>
         <div className="flex justify-around mb-5">
           <div className="flex flex-col gap-0.5">
-            <span className="text-xs text-muted-foreground">
-              Total repositories
-            </span>
+            <span className="text-xs text-muted-foreground">{card1Title}</span>
             <span className="text-lg font-bold leading-none sm:text-xl">
-              19
+              {card1Content}
             </span>
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-xs text-muted-foreground">
-              Contibutions last year
-            </span>
+            <span className="text-xs text-muted-foreground">{card2Title}</span>
             <span className="text-lg font-bold leading-none sm:text-xl">
-              453
+              {card2Content}
             </span>
           </div>
         </div>

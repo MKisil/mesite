@@ -90,7 +90,9 @@ export default function DockNav() {
                 >
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <item.icon className="size-full stroke-[hsl(var(--primary))]" />
+                      <a href={item.href}>
+                        <item.icon className="size-full stroke-[hsl(var(--primary))]" />
+                      </a>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{item.label}</p>
