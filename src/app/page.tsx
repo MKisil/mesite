@@ -40,6 +40,7 @@ import BlurFade from "@/components/ui/blur-fade";
 import SpotifySvg from "@/components/svg/spotifySvg";
 import DockNav from "@/components/layout/dockNav";
 import StatsBadgeList from "@/components/ui/statsBadgeList";
+import SmoothScroll from "@/components/ui/smoothScroll";
 
 import {
   socialLinks,
@@ -61,7 +62,9 @@ import {
   getTopEditors,
   getTopOperatingSystems,
 } from "@/lib/utils/getWakatimeProfileData";
-import SmoothScroll from "@/components/ui/smoothScroll";
+
+import SelfEmployedImage from "../../public/home/selfEmployed.png";
+import LogoImage from "../../public/home/logo.png";
 
 export default async function Home() {
   const githubContributionsbData = await fetchGithubContributions();
@@ -94,7 +97,7 @@ export default async function Home() {
         <div className="block-margin-bottom" id="about">
           <BlurFade delay={blurDelay}>
             <Avatar className="w-20 h-20 mb-4">
-              <AvatarImage src="" />
+              <AvatarImage src={LogoImage.src} />
               <AvatarFallback>M</AvatarFallback>
             </Avatar>
           </BlurFade>
@@ -113,7 +116,11 @@ export default async function Home() {
                 <Tooltip>
                   <TooltipTrigger>
                     <BlurFade delay={blurDelay}>
-                      <a className="a-outline-button [&_svg]:size-6 p-0 h-9 w-20 transition-colors duration-300">
+                      <a
+                        href="https://read.cv/mikhailok"
+                        target="_blank"
+                        className="a-outline-button [&_svg]:size-6 p-0 h-9 w-20 transition-colors duration-300"
+                      >
                         <FileUser
                           className="stroke-[hsl(var(--primary))]"
                           strokeWidth={1.3}
@@ -123,7 +130,7 @@ export default async function Home() {
                     </BlurFade>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p className={`${geistSans.className}`}>Download my CV</p>
+                    <p className={`${geistSans.className}`}>Read my CV</p>
                   </TooltipContent>
                 </Tooltip>
                 {socialLinks.map((link, index) => (
@@ -323,7 +330,7 @@ export default async function Home() {
           <BlurFade delay={blurDelay * 2}>
             <div className="flex gap-4">
               <Avatar className="w-16 h-16">
-                <AvatarImage src="" />
+                <AvatarImage src={SelfEmployedImage.src} />
                 <AvatarFallback>SF</AvatarFallback>
               </Avatar>
               <Accordion type="single" collapsible className="w-full">
