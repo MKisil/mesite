@@ -14,13 +14,6 @@ type ContributionCalendar = {
   weeks: ContributionWeek[];
 };
 
-type GithubResponse = {
-  user: {
-    contributionsCollection: {
-      contributionCalendar: ContributionCalendar;
-    };
-  };
-};
 
 type TransformedContribution = {
   label: string;

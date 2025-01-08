@@ -9,7 +9,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import React, { PropsWithChildren, useRef } from "react";
+import React, { useRef } from "react";
 
 import { cn } from "@/lib/utils/general";
 
@@ -20,6 +20,13 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
   iconDistance?: number;
   direction?: "top" | "middle" | "bottom";
   children: React.ReactNode;
+}
+
+interface ExtendedDockIconProps extends DockIconProps {
+  mouseX: MotionValue<number>;
+  size: number;
+  magnification: number;
+  distance: number;
 }
 
 const DEFAULT_SIZE = 40;
@@ -48,13 +55,16 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     const renderChildren = () => {
       return React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === DockIcon) {
-          return React.cloneElement(child, {
-            ...child.props,
-            mouseX: mouseX,
-            size: iconSize,
-            magnification: iconMagnification,
-            distance: iconDistance,
-          });
+          return React.cloneElement(
+            child as React.ReactElement<ExtendedDockIconProps>,
+            {
+              ...(child.props as object),
+              mouseX,
+              size: iconSize,
+              magnification: iconMagnification,
+              distance: iconDistance,
+            }
+          );
         }
         return child;
       });
@@ -88,7 +98,6 @@ export interface DockIconProps
   mouseX?: MotionValue<number>;
   className?: string;
   children?: React.ReactNode;
-  props?: PropsWithChildren;
 }
 
 const DockIcon = ({

@@ -132,13 +132,15 @@ export default function DockNav() {
           <CommandList className={`${geistSans.className}`}>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Suggestions">
-              <CommandItem className="!py-2.5 hover:cursor-pointer">
-                <FileUser
-                  strokeWidth={1.5}
-                  className="stroke-[hsl(var(--primary))]"
-                />
-                CV
-              </CommandItem>
+              <a href="https://read.cv/mikhailok" target="_blank">
+                <CommandItem className="!py-2.5 hover:cursor-pointer">
+                  <FileUser
+                    strokeWidth={1.5}
+                    className="stroke-[hsl(var(--primary))]"
+                  />
+                  CV
+                </CommandItem>
+              </a>
               <CommandItem className="!py-2.5 hover:cursor-pointer">
                 <HomeIcon
                   strokeWidth={1.5}
