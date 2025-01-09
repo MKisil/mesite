@@ -22,14 +22,21 @@ export const metadata: Metadata = {
     description: "Mikhailok - Full-Stack Web Developer",
     url: "https://mikhailok.me",
     siteName: "Mikhailok",
-    images: [],
+    images: [
+      {
+        url: "../../public/ogImage.png",
+        width: 1200,
+        height: 630,
+        alt: "Mikhailok - Full-Stack Developer",
+      },
+    ],
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Mikhailok",
     description: "Mikhailok - Full-Stack Web Developer",
-    images: [],
+    images: ["../../public/ogImage.png"],
   },
 };
 
