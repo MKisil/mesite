@@ -17,6 +17,20 @@ export const metadata: Metadata = {
     "React",
     "Vue",
   ],
+  openGraph: {
+    title: "Mikhailok",
+    description: "Mikhailok - Full-Stack Web Developer",
+    url: "https://mikhailok.me",
+    siteName: "Mikhailok",
+    images: [],
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Mikhailok",
+    description: "Mikhailok - Full-Stack Web Developer",
+    images: [],
+  },
 };
 
 export default function RootLayout({
