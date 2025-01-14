@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Mikhailok",
     images: [
       {
-        url: "/ogImage.png",
+        url: "https://mikhailok.me/ogImage.png",
         width: 1200,
         height: 630,
         alt: "Mikhailok - Full-Stack Developer",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mikhailok",
     description: "Mikhailok - Full-Stack Web Developer",
-    images: ["/ogImage.png"],
+    images: ["https://mikhailok.me/ogImage.png"],
   },
 };
 
