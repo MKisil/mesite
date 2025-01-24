@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
     "Vue",
+    "Docker",
+    "PostgreSQL",
+    "TypeScript",
   ],
   openGraph: {
     title: "Mikhailok",
