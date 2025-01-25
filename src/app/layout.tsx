@@ -5,8 +5,9 @@ import { geistSans } from "@/app/fonts";
 import { ThemeProvider } from "@/components/themeProvider";
 
 export const metadata: Metadata = {
-  title: "Mikhailok",
-  description: "Mikhailok - Full-Stack Web Developer",
+  title: "Mikhailok - Full-Stack Web Developer",
+  description:
+    "Full-Stack dev passionate about building AI tools and performant apps. I work with Django, FastAPI, React, and modern stacks. Always exploring new tech 💻.",
   keywords: [
     "JavaScript",
     "Python",
