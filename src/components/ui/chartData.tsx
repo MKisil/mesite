@@ -55,7 +55,7 @@ export default function ChartData({
           config={config}
           className="min-h-[130px] max-h-[130px] w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-transparent"
         >
-          <BarChart data={data}>
+          <BarChart accessibilityLayer data={data}>
             <XAxis
               dataKey="label"
               tickLine={false}
