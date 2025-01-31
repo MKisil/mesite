@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     "Docker",
     "PostgreSQL",
     "TypeScript",
+    "Redis",
+    "REST API",
+    "MySQL",
   ],
   openGraph: {
     title: "Mikhailok",
